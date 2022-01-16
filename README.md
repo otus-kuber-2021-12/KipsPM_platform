@@ -29,3 +29,16 @@ Homework #2
       tolerations:
       - operator: Exists
       Которая позволяет игнорировать любые ограничения, в том числе NoSchedule на мастер-нодах.
+
+Homework #3
+1. Создан kubernetes кластер в kind.
+
+2. Написаны манифесты для serviceaccount'ов bob и dave (sa-bob.yaml, sa-dave.yaml)
+3. Написан манифест clusterrolebinding.yaml для выдачи роли admin аккаунту bob.
+
+4. Написаны манифесты для namespace prometheus и serviceaccount carol (namespace.yaml, sa-carol.yaml)
+5. Всем serviceaccount'ам в namespace prometheus дана возможность делать get, list, watch в отношении Pods всего кластера (clusterrole.yaml, clusterrolebinding.yaml)
+
+5. Написаны манифесты для namespace dev и serviceaccount'ов jane и ken (namespace.yaml, sa-jane.yaml, sa-ken.yaml)
+6. jane дана роль admin в рамках namespace dev (rolebinding-jane.yaml)
+7. ken дана роль view в рамках namespace dev (rolebinding-ken.yaml)
