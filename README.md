@@ -42,3 +42,21 @@ Homework #3
 5. Написаны манифесты для namespace dev и serviceaccount'ов jane и ken (namespace.yaml, sa-jane.yaml, sa-ken.yaml)
 6. jane дана роль admin в рамках namespace dev (rolebinding-jane.yaml)
 7. ken дана роль view в рамках namespace dev (rolebinding-ken.yaml)
+
+Homework #4
+1. Исследованы различные сетевые варианты доступа к подам.
+2. Установлен и установлен MetalLB.
+3. *** Создан LoadBalancer для доступа к CoreDNS (tcp-dns.yaml, udp-dns.yaml)
+4. Установлен ingress-controller, настроен доступ к headless веб-серверу через с помощью Ingress.
+5. *** Установлен kubernetes-dashboard из официального репозитория, настроен ingress для доступа к нему с помощью prefix /dashboard (./dashboard/dashboard-ingress.yaml). Также в процессе отладки сделал пользователя для доступа к dashboard.
+6. ***
+- Реализован канареечный деплой с помощью ingress. Было написано 2 одинаковых Deployment с одинаковым приложением echo, разница только в целевых неймспейсах.
+- Написан ingress для "production" версии приложения (echo-prod-ingress.yaml)
+- Написан ingress для "canary" версии приложения (echo-canary-ingress.yaml)
+- В канареечной версии указаны следующие annotions:
+    nginx.ingress.kubernetes.io/canary: "true"
+    nginx.ingress.kubernetes.io/canary-by-header: "env"
+    nginx.ingress.kubernetes.io/canary-by-header-pattern: "canary"
+- Таким образом если сделать запрос к ingress curl -k https://192.168.64.6/ - попадаем на production среду
+- Если сделать запрос curl -k -H 'env:canary' https://192.168.64.6/ - попадаем в канареечную версию приложения (это видно по логам):
+172.17.0.7 - - [22/Jan/2022:15:45:23 +0000] "GET / HTTP/1.1" 200 740 "-" "curl/7.77.0"
