@@ -65,3 +65,27 @@ Homework #5
 1. Запущен statefulset c MinIO
 2. Запущен headless сервис для MinIO
 3. *** Исправлена конфигурация StatefulSet для использования секрета (minio-secrets.yaml)
+
+Homework #6
+1. Развернут кластер kubernetes в GCP.
+2. Установлен nginx-ingress с помощью helm.
+3. Установлен cert-manager, настроено получение стейджинг и продакшн сертификатов.
+4. Установлен chartmuseum.
+5. *** Для сохранения своих чартов в chartmuseum был установлен плагин helm push и создан пустой sample-chart.
+   *** helm push sample-chart/ chartmuseum && helm repo update && helm search repo -l chartmuseum/
+6. Установлен harbor из репозитория https://github.com/goharbor/harbor-helm
+7. *** Описана установка nginx-ingress, cert-manager и harbor в helmfile
+8. Создан свой helm chart для hipster-shop
+9. addservice не поднимался, так как указанной версии уже нет в репозитории, обновил версию в чарте.
+10. Минимально шаблонизирован chart frontend с помощью values.yaml
+11. Chart frontend вынесен в зависимости для основного чарта.
+12. *** Redis также вынесен в зависимости через Chart.yaml.
+13. Изучена работа helm-secrets (в последствии файлы secret.yaml и secrets.yaml удалены за ненадобностью в текущем проекте)
+14. Все получившиеся чарты были запушены в harbor.
+15. Установлен порождение сатаны kubecfg. Методичка в этом пункте устарела напрочь, удалите это задание, никто не должен пользоваться этим ужасом.
+16. Paymentservice и shippingservice установлены с помощью kubecfg.
+17. *** В качестве другого решения на основе jsonnet была выбрана tanka по совету Димы Зайцева.
+    *** Было принято решение установить grafana+prometheus с помощью tanka
+    *** Пользовался мануалом https://tanka.dev/tutorial/jsonnet
+18. Напоследок был установлен Kustomize и описан сервис recommendation.
+
