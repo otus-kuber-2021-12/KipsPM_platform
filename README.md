@@ -89,7 +89,7 @@ Homework #6
     *** Пользовался мануалом https://tanka.dev/tutorial/jsonnet
 18. Напоследок был установлен Kustomize и описан сервис recommendation.
 
-Homework #6
+Homework #7
 0. К сожалению мои познания в пайтоне нулевые, поэтому впервые за 2 курса будет домашка без звездочки :(
 1. Поднят кластер в minikube
 2. Написан CustomResource
@@ -101,3 +101,15 @@ Homework #6
 8. В манифест добавлена обязательно параметров.
 9. Использованы готовые манифесты для деплоя оператора.
 10. Проведены все проверки описанные в ДЗ.
+
+Homework #8
+0. Поднимал все в minikube
+1. Для деплоя prometheus стека использовал prometheus-operator из https://github.com/prometheus-operator/kube-prometheus
+2. В качестве базового образа nginx использовался nginx:alpine
+3. Выключил metrics-server согласно документации: minikube addons disable metrics-server
+4. Применил все CRD: kubectl apply --server-side -f manifests/setup
+5. Применил все манифесты: kubectl apply -f manifests/
+6. Применил конфигмап nginx, затем его деплоймент, сервис и экспортер.
+7. Пробросил порт к grafana: kubectl --namespace monitoring port-forward svc/grafana 3000
+8. В grafana импортировал дашбоард https://grafana.com/grafana/dashboards/12708
+9. Результат на скриншоте в PR
